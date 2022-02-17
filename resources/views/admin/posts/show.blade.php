@@ -13,9 +13,16 @@
                         @if ($post->published)
                             <span class="badge badge-success">Pubblicato</span> 
                         @else
-                        <span class="badge badge-secondary">Bozza</span>
+                            <span class="badge badge-secondary">Bozza</span>
                         @endif
                     </div>
+                    @if ($post->category)
+                        <div class="mb-3">
+                            Categoria:
+                            {{$post->category->name}}
+                        </div>
+                    @endif
+                    
                     {{$post->content}}
 
                 </div>

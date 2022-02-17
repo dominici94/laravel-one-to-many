@@ -15,7 +15,7 @@
 
                         <div class="form-group">
                             <label for="title">Titolo</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Inserisci titolo" value="{{old("title") ? old('title') : $post->title}}">
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Inserisci titolo" value="{{old("title", $post->title)}}">
                             @error('title')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -29,11 +29,21 @@
                             @enderror
                         </div>
 
+                        <div class="form-group">
+                            <label for="category">Categoria</label>
+                            <select class="custom-select @error('category_id') is-invalid @enderror" name="category_id" id="category">
+                                <option value="">Seleziona categoria</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}" {{old("category_id", $post->category_id) == $category->id ? "selected" : ""}}>{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="form-group form-check">
-                            @php
-                                $published = old('published') ? old('published') : $post->published;
-                            @endphp
-                            <input type="checkbox" class="form-check-input @error('published') is-invalid @enderror" name="published" id="published" {{$published ? 'checked' : ''}}>
+                            <input type="checkbox" class="form-check-input @error('published') is-invalid @enderror" name="published" id="published" {{old('published', $post->published) ? 'checked' : ''}}>
                             <label class="form-check-label" for="published">Pubblica</label>
                             @error('published')
                                 <div class="alert alert-danger">{{ $message }}</div>
