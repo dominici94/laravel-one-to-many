@@ -40,7 +40,7 @@
                             <a class="nav-link" href="{{ route('posts.index') }}">Posts List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('posts.create') }}">Crea Post</a>
+                            <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
                         </li>
                     </ul>
 
